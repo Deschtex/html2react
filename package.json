@@ -1,0 +1,34 @@
+{
+  "name": "html2react",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel src --out-dir lib --ignore *.spec.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deschtex/html2react.git"
+  },
+  "keywords": [
+    "html",
+    "react",
+    "html-to-react"
+  ],
+  "author": "Pierre Wahlgren <pierre.wahlgren@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Deschtex/html2react/issues"
+  },
+  "homepage": "https://github.com/Deschtex/html2react#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "react": "^15.1.0"
+  },
+  "peerDependencies": {
+    "react": "^0.14.8"
+  }
+}
