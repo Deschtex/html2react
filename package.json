@@ -1,7 +1,7 @@
 {
   "name": "html2react",
   "version": "0.0.1",
-  "description": "",
+  "description": "Turns raw HTML into React components",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore *.spec.js",
