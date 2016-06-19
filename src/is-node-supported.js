@@ -1,11 +1,5 @@
 import NodeType from './node-type'
 
-/**
- * Checks if a node is supported or not by looking at its
- * tag name, node type or node value.
- * @param {HTMLElement|Node} node
- * @return {Boolean}
- */
 export default function isNodeSupported (node = {}) {
   return !(
     isTagNameIgnored(node.tagName) ||
