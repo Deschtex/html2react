@@ -1,6 +1,6 @@
 {
   "name": "html2react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Turns raw HTML into React components",
   "main": "lib/index.js",
   "scripts": {
