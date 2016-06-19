@@ -1,8 +1,9 @@
 import React from 'react'
-import NodeType from './node-type'
-import isNodeSupported from './is-node-supported'
-import getPropsFromAttributes from './get-props-from-attributes'
 import getElementOverride from './get-element-override'
+import getPropsFromAttributes from './get-props-from-attributes'
+import isElementChildrenSupported from './is-element-children-supported'
+import isNodeSupported from './is-node-supported'
+import NodeType from './node-type'
 
 export default function parseNodes (nodes = [], elementOverrides = {}) {
   return Array.from(nodes).filter(isNodeSupported).map((node, index) => {
@@ -32,13 +33,13 @@ function parseElementNode (element, key, overrides) {
   const override = getElementOverride(element, overrides)
   const tagName = element.tagName
   const props = getElementProps(element, key)
-  const children = getElementChildren(element, overrides)
+  const args = [override || tagName, props]
 
-  return React.createElement(
-    override || tagName,
-    props,
-    children
-  )
+  if (isElementChildrenSupported(element)) {
+    args.push(getElementChildren(element, overrides))
+  }
+
+  return React.createElement(...args)
 }
 
 function parseNode (node, key) {
