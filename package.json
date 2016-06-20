@@ -1,11 +1,12 @@
 {
   "name": "html2react",
   "version": "0.1.2",
-  "description": "Turns raw HTML into React components",
+  "description": "Utility for turning raw HTML into React elements",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src --out-dir lib --ignore *.spec.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "not-in-install && npm prune && npm test && npm run build || in-install",
+    "test": "echo \"Error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,6 @@
     "react": "^15.1.0"
   },
   "peerDependencies": {
-    "react": "^0.14.8"
+    "react": "^0.14 || ^15.0"
   }
 }
