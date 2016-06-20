@@ -10,8 +10,14 @@ export default function parseNodes (nodes = [], elementOverrides = {}) {
     if (node.nodeType === NodeType.ELEMENT) {
       return parseElementNode(node, index, elementOverrides)
     }
-    return parseNode(node, index)
+    return node.nodeValue
   })
+}
+
+function getElementChildren (element, overrides) {
+  if (isElementChildrenSupported(element)) {
+    return parseNodes(element.childNodes, overrides)
+  }
 }
 
 function getElementProps (element, key) {
@@ -22,31 +28,16 @@ function getElementProps (element, key) {
   }
 }
 
-function getElementChildren (element, overrides) {
-  if (element.childNodes.length) {
-    return parseNodes(element.childNodes, overrides)
-  }
-  return element.textContent
-}
-
 function parseElementNode (element, key, overrides) {
+  const children = getElementChildren(element, overrides)
   const override = getElementOverride(element, overrides)
   const tagName = element.tagName
   const props = getElementProps(element, key)
   const args = [override || tagName, props]
 
-  if (isElementChildrenSupported(element)) {
-    args.push(getElementChildren(element, overrides))
+  if (children) {
+    args.push(children)
   }
 
   return React.createElement(...args)
-}
-
-function parseNode (node, key) {
-  return React.createElement(
-    'span', {
-      key
-    },
-    node.nodeValue
-  )
 }

@@ -10,7 +10,7 @@ export default function getElementOverride (element, overrides) {
           return overrides[override]
         }
       } catch (e) {
-        return element
+        // At least we tried.
       }
     }
   }
