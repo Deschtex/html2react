@@ -47,5 +47,5 @@ const IGNORED_NODE_VALUES = /^\n/
  * @return {Boolean}
  */
 const isNodeValueIgnored = (nodeValue) => (
-  IGNORED_NODE_VALUES.test(nodeValue)
+  IGNORED_NODE_VALUES.test((nodeValue || '').trim())
 )
