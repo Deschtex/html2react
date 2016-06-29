@@ -37,15 +37,10 @@ const isNodeTypeIgnored = (nodeType) => (
 )
 
 /**
- * Node values that are not supported.
- * @type {RegExp}
- */
-const IGNORED_NODE_VALUES = /^\n/
-/**
  * Checks if provided node value is ignored (not supported).
  * @param {String} nodeValue
  * @return {Boolean}
  */
 const isNodeValueIgnored = (nodeValue) => (
-  IGNORED_NODE_VALUES.test((nodeValue || '').trim())
+  nodeValue !== null && nodeValue.trim() === ''
 )
