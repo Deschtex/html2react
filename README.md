@@ -48,7 +48,7 @@ const html = `
   <p>Baz</p>
 `
 const content = HTML2React(html, {
-  a: ExternalLink
+  a: Link
 })
 
 render(
