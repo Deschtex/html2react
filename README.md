@@ -90,3 +90,9 @@ render(
   document.getElementById('root')
 )
 ```
+
+## License
+
+MIT (http://www.opensource.org/licenses/mit-license.php)
+
+See [LICENSE](LICENSE) attached.
