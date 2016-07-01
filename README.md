@@ -20,7 +20,7 @@ import { render } from 'react-dom'
 
 const html = `
   <h1>Foo</h1>
-  <p><a href="#" style="text-decoration: underline;">Bar</a></p>
+  <p><a href="#" style="text-decoration: none;">Bar</a></p>
   <p>Baz</p>
 `
 
@@ -39,7 +39,7 @@ import HTML2React from 'html2react'
 import { render } from 'react-dom'
 
 function Link (props) {
-  return <a {...props} style={{ textDecoration: 'underline' }} />
+  return <a {...props} style={{ textDecoration: 'none' }} />
 }
 
 const html = `
@@ -66,7 +66,7 @@ import HTML2React from 'html2react'
 import { render } from 'react-dom'
 
 function Link (props) {
-  return <a {...props} style={{ textDecoration: 'underline' }} />
+  return <a {...props} style={{ textDecoration: 'none' }} />
 }
 function ExternalLink (props) {
   return <Link {...props} target='_blank' />
