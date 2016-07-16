@@ -12,15 +12,15 @@ npm install --save html2react
 
 ## Usage
 
-### Basic conversion
+### Basic HTML conversion
 
 If you want to take raw HTML and turn it into something that you can use in a React application, without using [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html), then you can simply pass it to `html2react`:
 
 
 ```javascript
 import React from 'react'
-import HTML2React from 'html2react'
 import { render } from 'react-dom'
+import HTML2React from 'html2react'
 
 const html = `
   <h1>Foo</h1>
@@ -38,12 +38,14 @@ render(
 
 **Note:** All attributes but [event handlers](https://www.w3.org/TR/html5/webappapis.html#event-handlers-on-elements,-document-objects,-and-window-objects) will be transferred to the React elements.
 
-### Conversion with element overrides
+### HTML conversion with element overrides
+
+A powerful feature of `html2react` is the ability to target elements in the provided HTML and override them with React components, using nothing but [CSS selectors](https://www.w3.org/TR/css3-selectors/#selectors) for the mapping.
 
 ```javascript
 import React from 'react'
-import HTML2React from 'html2react'
 import { render } from 'react-dom'
+import HTML2React from 'html2react'
 
 function Link (props) {
   return <a {...props} style={{ textDecoration: 'none' }} />
@@ -68,8 +70,8 @@ render(
 
 ```javascript
 import React from 'react'
-import HTML2React from 'html2react'
 import { render } from 'react-dom'
+import HTML2React from 'html2react'
 
 function Link (props) {
   return <a {...props} style={{ textDecoration: 'none' }} />
@@ -99,8 +101,8 @@ render(
 
 ```javascript
 import React from 'react'
-import HTML2React from 'html2react'
 import { render } from 'react-dom'
+import HTML2React from 'html2react'
 
 function Link (props) {
   return <a {...props} style={{ textDecoration: 'none' }} />
@@ -113,9 +115,7 @@ const html = `
   <p>Qux</p>
 `
 const content = HTML2React(html, {
-  'p:nth-of-type(2)': (props) => (
-    <p><Link {...props } /></p>,
-  )
+  'p:nth-of-type(2)': (props) => <p><Link {...props} /></p>
 })
 
 render(
