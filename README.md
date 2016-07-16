@@ -15,6 +15,7 @@ npm install --save html2react
 ### Basic example
 
 ```javascript
+import React from 'react'
 import HTML2React from 'html2react'
 import { render } from 'react-dom'
 
@@ -32,9 +33,10 @@ render(
 )
 ```
 
-### Override example #1
+### Basic override example
 
 ```javascript
+import React from 'react'
 import HTML2React from 'html2react'
 import { render } from 'react-dom'
 
@@ -59,9 +61,10 @@ render(
 )
 ```
 
-### Override example #2
+### Advanced override examples
 
 ```javascript
+import React from 'react'
 import HTML2React from 'html2react'
 import { render } from 'react-dom'
 
@@ -81,6 +84,35 @@ const html = `
 const content = HTML2React(html, {
   'a.external': ExternalLink,
   a: Link
+})
+
+render(
+  <div>
+    {content}
+  </div>,
+  document.getElementById('root')
+)
+```
+
+```javascript
+import React from 'react'
+import HTML2React from 'html2react'
+import { render } from 'react-dom'
+
+function Link (props) {
+  return <a {...props} style={{ textDecoration: 'none' }} />
+}
+
+const html = `
+  <h1>Foo</h1>
+  <p>Bar</p>
+  <p>Baz</p>
+  <p>Qux</p>
+`
+const content = HTML2React(html, {
+  'p:nth-of-type(2)': (props) => (
+    <p><Link {...props } /></p>,
+  )
 })
 
 render(
