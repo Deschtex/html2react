@@ -21,9 +21,8 @@ function getElementChildren (element, overrides) {
 }
 
 function getElementProps (element, key) {
-  const attributes = Array.from(element.attributes || [])
   return {
-    ...getPropsFromAttributes(attributes),
+    ...getPropsFromAttributes(element),
     key
   }
 }
@@ -31,12 +30,17 @@ function getElementProps (element, key) {
 function parseElementNode (element, key, overrides) {
   const children = getElementChildren(element, overrides)
   const override = getElementOverride(element, overrides)
-  const tagName = element.tagName
+  const tagName = element.tagName.toLowerCase()
   const props = getElementProps(element, key)
   const args = [override || tagName, props]
 
   if (children) {
-    args.push(children)
+    // https://facebook.github.io/react/docs/forms.html#why-textarea-value
+    if (tagName === 'textarea') {
+      props.defaultValue = children
+    } else {
+      args.push(children)
+    }
   }
 
   return React.createElement(...args)
