@@ -40,7 +40,9 @@ render(
 
 ### HTML conversion with element overrides
 
-A powerful feature of `html2react` is the ability to target elements in the provided HTML and override them with React components, using nothing but [CSS selectors](https://www.w3.org/TR/css3-selectors/#selectors) for the mapping.
+A powerful feature of `html2react` is the ability to target elements in the provided HTML and override them with React components, using nothing but [CSS selectors](https://www.w3.org/TR/css3-selectors/#selectors) for the mapping. Super simple!
+
+The following example maps any `<a>` tag in the HTML to the local `Link` component:
 
 ```javascript
 import React from 'react'
@@ -67,6 +69,10 @@ render(
   document.getElementById('root')
 )
 ```
+
+**Note:** In the example above, a stateless component is used, however, all [React components](https://facebook.github.io/react/docs/reusable-components.html) work.
+
+The following example maps any `<a>` tag with an `external` class to the `ExternalLink` component:
 
 ```javascript
 import React from 'react'
@@ -98,6 +104,8 @@ render(
   document.getElementById('root')
 )
 ```
+
+In this last example, a slightly more complex selector is used in order to map only the second `<p>` tag to a `<p>` tag that wraps the local `Link` component.
 
 ```javascript
 import React from 'react'
