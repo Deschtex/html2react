@@ -1,40 +1,68 @@
 import ReactProperties from './react-properties-map'
 
-export default function getPropsFromAttributes (attributes = []) {
-  return attributes.reduce((acc, { name, value }) => {
-    const propName = ReactProperties[name] || name
+export default function getPropsFromAttributes (element) {
+  const attributes = Array.from(element.attributes || [])
+
+  return attributes.reduce((props, { name, value }) => {
+    const propName = getPropName(name, element)
     const propValue = getPropValue(propName, value)
-    acc[propName] = propValue
-    return acc
+    return {
+      ...props,
+      [propName]: propValue
+    }
   }, {})
 }
 
-function formatStylePropName (name) {
+function formatStylePropName (propName) {
   // Vendor prefixes other than "ms" should begin with a capital letter.
   // See: https://facebook.github.io/react/tips/inline-styles.html.
-  name = name.replace(/^(\s+)?-(?=ms)/, '').trim()
+  propName = propName.replace(/^(\s+)?-(?=ms)/, '').trim()
   // Turn, for instance, "-webkit-property" into "WebkitProperty"
   // and "font-size" into "fontSize.
-  return name.replace(/(\-\w)/g, (match) => {
+  return propName.replace(/(\-\w)/g, (match) => {
     return match[1].toUpperCase()
   })
 }
 
-function getStylePropValue (value) {
-  const properties = value.split(';')
-  const filteredProperties = properties.filter((prop) => !!prop)
+function getStylePropValue (attrValue) {
+  const props = attrValue.split(';').filter((prop) => {
+    return !!prop
+  })
 
-  return filteredProperties.reduce((acc, prop) => {
+  return props.reduce((props, prop) => {
     let [propName, propValue] = prop.split(':')
     propName = formatStylePropName(propName)
-    acc[propName] = propValue.trim()
-    return acc
+    propValue = propValue.trim()
+    return {
+      ...props,
+      [propName]: propValue
+    }
   }, {})
 }
 
-function getPropValue (name = '', value = '') {
-  if (name.toLowerCase() === 'style') {
-    return getStylePropValue(value)
+function getPropName (attrName, element) {
+  const lowerAttrName = attrName.toLowerCase()
+
+  if (lowerAttrName === 'value') {
+    const tagName = element.tagName.toLowerCase()
+    // https://facebook.github.io/react/docs/forms.html#default-value
+    // https://facebook.github.io/react/docs/forms.html#why-select-value
+    if (tagName === 'input' || tagName === 'select') {
+      return 'defaultValue'
+    }
+  } else if (lowerAttrName === 'checked') {
+    return 'defaultChecked'
   }
-  return value
+
+  return ReactProperties[attrName] || attrName
+}
+
+function getPropValue (propName, attrValue) {
+  const lowerPropName = propName.toLowerCase()
+
+  if (lowerPropName === 'style') {
+    return getStylePropValue(attrValue)
+  }
+
+  return attrValue
 }
