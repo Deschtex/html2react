@@ -14,8 +14,7 @@ npm install --save html2react
 
 ### Basic HTML conversion
 
-If you want to take raw HTML and turn it into something that you can use in a React application, without using [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html), then you can simply pass it to `html2react`:
-
+If you want to take raw HTML, SVG or any arbitrary XML and turn it into something that you can use in a React application, without using [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html), then you can simply pass it to `html2react`:
 
 ```javascript
 import React from 'react'
@@ -70,7 +69,7 @@ render(
 )
 ```
 
-The following example maps any `<a>` tag with an `external` class to the local `ExternalLink` component. It also demonstrates a slightly more complex selector that maps only the second `<p>` tag to a `<p>` tag that wraps the local `Link` component:
+The following example maps any `<a>` tag with an `external` class to the local `ExternalLink` component. It also demonstrates a slightly more complex selector that maps only the third `<p>` tag to a `<p>` tag that wraps the local `Link` component:
 
 ```javascript
 import React from 'react'
