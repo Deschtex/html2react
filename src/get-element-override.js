@@ -1,12 +1,12 @@
 export default function getElementOverride (element, overrides) {
-   // Put in a temporary container so we can query selectors on it.
-  const tempEl = document.createElement('div')
-  tempEl.appendChild(element)
+  const parentNode = getTopMostElementParent(element)
 
   for (let override in overrides) {
     if (overrides.hasOwnProperty(override)) {
       try {
-        if (tempEl.querySelector(override)) {
+        const matches = parentNode.querySelectorAll(override)
+
+        if (Array.from(matches).indexOf(element) > -1) {
           return overrides[override]
         }
       } catch (e) {
@@ -14,4 +14,12 @@ export default function getElementOverride (element, overrides) {
       }
     }
   }
+}
+
+function getTopMostElementParent (element) {
+  let parentNode = element.parentNode
+  while (!parentNode) {
+    parentNode = parentNode.parentNode
+  }
+  return parentNode
 }
