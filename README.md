@@ -12,9 +12,10 @@ npm install --save html2react
 
 ## Usage
 
-### Basic example
+### Basic conversion
 
 If you want to take raw HTML and turn it into something that you can use in a React application, without using [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html), then you can simply pass it to `html2react`:
+
 
 ```javascript
 import React from 'react'
@@ -35,7 +36,9 @@ render(
 )
 ```
 
-### Basic override example
+**Note:** All attributes but [event handlers](https://www.w3.org/TR/html5/webappapis.html#event-handlers-on-elements,-document-objects,-and-window-objects) will be transferred to the React elements.
+
+### Conversion with element overrides
 
 ```javascript
 import React from 'react'
@@ -62,8 +65,6 @@ render(
   document.getElementById('root')
 )
 ```
-
-### Advanced override examples
 
 ```javascript
 import React from 'react'
