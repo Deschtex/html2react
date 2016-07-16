@@ -70,7 +70,7 @@ render(
 )
 ```
 
-The following example maps any `<a>` tag with an `external` class to the local `ExternalLink` component:
+The following example maps any `<a>` tag with an `external` class to the local `ExternalLink` component. It also demonstrates a slightly more complex selector that maps only the second `<p>` tag to a `<p>` tag that wraps the local `Link` component:
 
 ```javascript
 import React from 'react'
@@ -92,36 +92,8 @@ const html = `
 `
 const content = HTML2React(html, {
   'a.external': ExternalLink,
+  'p:nth-of-type(3)': (props) => <p><Link {...props} /></p>,
   a: Link
-})
-
-render(
-  <div>
-    {content}
-  </div>,
-  document.getElementById('root')
-)
-```
-
-In this last example, a slightly more complex selector is used in order to map only the second `<p>` tag to a `<p>` tag that wraps the local `Link` component.
-
-```javascript
-import React from 'react'
-import { render } from 'react-dom'
-import HTML2React from 'html2react'
-
-function Link (props) {
-  return <a {...props} style={{ textDecoration: 'none' }} />
-}
-
-const html = `
-  <h1>Foo</h1>
-  <p>Bar</p>
-  <p>Baz</p>
-  <p>Qux</p>
-`
-const content = HTML2React(html, {
-  'p:nth-of-type(2)': (props) => <p><Link {...props} /></p>
 })
 
 render(
