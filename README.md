@@ -14,6 +14,8 @@ npm install --save html2react
 
 ### Basic example
 
+If you want to take raw HTML and turn it into something that you can use in a React application, without using [dangerouslySetInnerHTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html), then you can simply pass it to `html2react`:
+
 ```javascript
 import React from 'react'
 import HTML2React from 'html2react'
