@@ -72,7 +72,7 @@ render(
 
 **Note:** In the example above, a stateless component is used, however, all [React components](https://facebook.github.io/react/docs/reusable-components.html) work.
 
-The following example maps any `<a>` tag with an `external` class to the `ExternalLink` component:
+The following example maps any `<a>` tag with an `external` class to the local `ExternalLink` component:
 
 ```javascript
 import React from 'react'
