@@ -17,7 +17,8 @@ export default function getElementOverride (element, overrides) {
 
 function getTopMostElementParent (element) {
   let parentNode = element.parentNode
-  while (!parentNode) {
+  // Traverse up the DOM tree until the last parent is found.
+  while (parentNode.parentNode) {
     parentNode = parentNode.parentNode
   }
   return parentNode
