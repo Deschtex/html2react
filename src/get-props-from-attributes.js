@@ -64,5 +64,13 @@ function getPropValue (propName, attrValue) {
     return getStylePropValue(attrValue)
   }
 
+  switch (lowerPropName) {
+    case 'checked':
+    case 'defaultchecked':
+    case 'readonly':
+    case 'disabled':
+      return true;
+  }
+
   return attrValue
 }
