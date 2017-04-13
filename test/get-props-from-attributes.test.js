@@ -44,7 +44,19 @@ it("gets props from <span style='...'/> element", () => {
         .toEqual({
             style: {
                 color: 'red',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+            },
+        });
+});
+
+it("works with invalid styles", () => {
+    const element = toElement('<span style="color:;font-size">foo</span>');
+
+    expect(getPropsFromAttributes(element))
+        .toEqual({
+            style: {
+                color: '',
+                fontSize: undefined,
             },
         });
 });
