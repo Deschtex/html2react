@@ -30,12 +30,11 @@ function getStylePropValue (attrValue) {
   })
 
   return props.reduce((props, prop) => {
-    let [propName, propValue] = prop.split(/:(.+)?/)
+    let [propName, propValue] = prop.split(/:(.*)/)
     propName = formatStylePropName(propName)
-    propValue = propValue.trim()
     return {
       ...props,
-      [propName]: propValue
+      [propName]: propValue && propValue.trim(),
     }
   }, {})
 }

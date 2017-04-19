@@ -44,7 +44,31 @@ it("gets props from <span style='...'/> element", () => {
         .toEqual({
             style: {
                 color: 'red',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+            },
+        });
+});
+
+it("gets props from <span style='...'/> element, where style values includes :", () => {
+    const element = toElement('<span style="background-image: url(http://example.com/foo.png)">foo</span>');
+
+    expect(getPropsFromAttributes(element))
+        .toEqual({
+            style: {
+                backgroundImage: 'url(http://example.com/foo.png)',
+            },
+        });
+});
+
+
+it("works with invalid styles", () => {
+    const element = toElement('<span style="color:;font-size">foo</span>');
+
+    expect(getPropsFromAttributes(element))
+        .toEqual({
+            style: {
+                color: '',
+                fontSize: undefined,
             },
         });
 });
