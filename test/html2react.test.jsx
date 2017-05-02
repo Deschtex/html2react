@@ -41,3 +41,15 @@ dataset.forEach(({ input, output }) => {
       .toBe(output)
   })
 });
+
+it("overrides elements", () => {
+  const input = `<a href="/">link</a>`;
+  const output = `<a href="/" target="_blank">link</a>`;
+  const elementOverrides = {
+    a: (props) => {
+      return <a {...props} target="_blank"/>;
+    },
+  }
+  expect(renderToStaticMarkup(<div>{HTML2React(input, elementOverrides)}</div>).replace(/(?:^<div[^>]*>)|(?:<\/div>$)/g, ''))
+    .toBe(output)
+});
