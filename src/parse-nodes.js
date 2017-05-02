@@ -6,9 +6,14 @@ import isNodeSupported from './is-node-supported'
 import NodeType from './node-type'
 
 export default function parseNodes (nodes = [], elementOverrides = {}) {
+  const overrides = {
+    script: (props) => null,
+    ...elementOverrides,
+  };
+
   return Array.from(nodes).filter(isNodeSupported).map((node, index) => {
     if (node.nodeType === NodeType.ELEMENT) {
-      return parseElementNode(node, index, elementOverrides)
+      return parseElementNode(node, index, overrides)
     }
     return node.nodeValue
   })
