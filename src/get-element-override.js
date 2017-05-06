@@ -4,7 +4,7 @@ export default function getElementOverride (element, overrides) {
   for (const override in overrides) {
     if (overrides.hasOwnProperty(override)) {
       try {
-        const matches = parentNode.getElementsByTagName(override)
+        const matches = parentNode.querySelectorAll(override)
         if (Array.prototype.indexOf.call(matches, element) > -1) {
           return overrides[override]
         }

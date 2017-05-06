@@ -53,3 +53,15 @@ it("overrides elements", () => {
   expect(renderToStaticMarkup(<div>{HTML2React(input, elementOverrides)}</div>).replace(/(?:^<div[^>]*>)|(?:<\/div>$)/g, ''))
     .toBe(output)
 });
+
+it("overrides elements with CSS selectors", () => {
+  const input = `<a href="/">foo</a><a href="/" class="external">bar</a>`;
+  const output = `<a href="/">foo</a><a href="/" class="external" target="_blank">bar</a>`;
+  const elementOverrides = {
+    "a.external": (props) => {
+      return <a {...props} target="_blank"/>;
+    },
+  }
+  expect(renderToStaticMarkup(<div>{HTML2React(input, elementOverrides)}</div>).replace(/(?:^<div[^>]*>)|(?:<\/div>$)/g, ''))
+    .toBe(output)
+});
