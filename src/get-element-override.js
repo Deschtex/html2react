@@ -1,11 +1,11 @@
 export default function getElementOverride (element, overrides) {
   const parentNode = getTopMostElementParent(element)
 
-  for (let override in overrides) {
+  for (const override in overrides) {
     if (overrides.hasOwnProperty(override)) {
       try {
         const matches = parentNode.querySelectorAll(override)
-        if (Array.from(matches).indexOf(element) > -1) {
+        if (Array.prototype.indexOf.call(matches, element) > -1) {
           return overrides[override]
         }
       } catch (e) {
