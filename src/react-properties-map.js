@@ -1,5 +1,5 @@
-import ReactHTMLDOMPropertyConfig from 'react-dom/lib/HTMLDOMPropertyConfig'
-import ReactSVGDOMPropertyConfig from 'react-dom/lib/SVGDOMPropertyConfig'
+import ReactHTMLDOMPropertyConfig from "react-dom-core/lib/HTMLDOMPropertyConfig";
+import ReactSVGDOMPropertyConfig from "react-dom-core/lib/SVGDOMPropertyConfig";
 
 /**
  * Object with HTML attributes mapped to React properties (IDL attributes)
