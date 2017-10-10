@@ -33,6 +33,7 @@
     "jest": "^21.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-dom-core": "^0.0.2",
     "react-test-renderer": "^16.0.0",
     "regenerator-runtime": "^0.11.0"
   },
