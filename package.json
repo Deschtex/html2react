@@ -34,14 +34,14 @@
     "babel-preset-stage-1": "^6.24.1",
     "in-publish": "^2.0.0",
     "jest": "^21.2.1",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0",
     "react-test-renderer": "^16.0.0",
     "regenerator-runtime": "^0.11.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^15.3.0 || ^16.0.0",
+    "react-dom": "^15.3.0 || ^16.0.0"
   },
   "jest": {
     "testRegex": "test/.*\\.test\\.js"
