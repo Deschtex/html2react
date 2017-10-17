@@ -22,6 +22,10 @@ const dataset = [
   &quot;foo&quot; : &quot;bar&quot;
 }</pre>`
   },
+  {
+    input: "<pre><span>foo</span>\n<span>bar</span>\n</pre>",
+    output: "<pre><span>foo</span>\n<span>bar</span>\n</pre>",
+  },
 
   {
     input: `<textarea>{

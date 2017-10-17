@@ -27,5 +27,5 @@ const isNodeTypeIgnored = (nodeType) => (
  * @return {Boolean}
  */
 const isNodeValueIgnored = (nodeValue) => (
-  nodeValue !== null && nodeValue.trim() === ''
+  nodeValue !== null && nodeValue === ''
 )
