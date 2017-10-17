@@ -8,6 +8,9 @@
     "prepublish": "not-in-install && npm prune && npm test && npm run build || in-install",
     "test": "jest"
   },
+  "files": [
+    "lib/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Deschtex/html2react.git"
